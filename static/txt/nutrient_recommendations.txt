@@ -1,0 +1,129 @@
+BMI: 19.6 (Normal weight)
+Calories: 2500-2800 kcal 
+
+Nutrients:
+    Macronutrients:
+        1. Carbohydrates: 45-65% of daily caloric intake
+            - Sources: Whole grains (brown rice, quinoa, oats), fruits (bananas, apples, berries), vegetables (sweet potatoes, broccoli, spinach), legumes (lentils, chickpeas)
+                Glucose: 40-50%
+                Fructose: 10-20%
+                Galactose: 0-10%
+                Sucrose: 5-15%
+                Lactose: 0-10% (May vary depending on dairy consumption)
+                Ribose: Trace amounts
+                Amylose: 20-30% of total starch intake
+                Amylopectin: 70-80% of total starch intake
+                Maltose: Trace amounts
+
+        2. Proteins (Essential Amino Acids): 15-25% of daily caloric intake
+            - Sources: Legumes (lentils, beans, chickpeas), tofu, tempeh, edamame, nuts, seeds, quinoa, dairy products (if consumed)
+                Essential:
+                    Histidine (H): 14 mg/kg body weight (798 mg)
+                    Isoleucine (I): 19 mg/kg body weight (1083 mg)
+                    Leucine (L): 39 mg/kg body weight (2223 mg)
+                    Lysine (K): 38 mg/kg body weight (2166 mg)
+                    Methionine (M): 19 mg/kg body weight (1083 mg)
+                    Phenylalanine (F): 33 mg/kg body weight (1881 mg)
+                    Threonine (T): 24 mg/kg body weight (1368 mg)
+                    Tryptophan (W): 5 mg/kg body weight (285 mg)
+                    Valine (V): 26 mg/kg body weight (1482 mg)
+                
+                Conditionally essential:
+                    Arginine (R): Adequate intake generally obtained through a balanced vegetarian diet.
+                    Cysteine (C): Adequate intake generally obtained through a balanced vegetarian diet.
+                    Glutamine (Q): Adequate intake generally obtained through a balanced vegetarian diet.
+                    Glycine (G): Adequate intake generally obtained through a balanced vegetarian diet.
+                    Proline (P): Adequate intake generally obtained through a balanced vegetarian diet.
+                    Tyrosine (Y): Adequate intake generally obtained through a balanced vegetarian diet.
+                    Taurine: Found primarily in animal products, but can be synthesized by the body.
+
+        3. Fats (Essential Fatty Acids): 20-30% of daily caloric intake
+            - Sources: Olive oil, nuts (almonds, walnuts), seeds (chia seeds, flaxseeds), avocados
+                Saturated Fatty Acids (Stable): Limit to less than 10% of total calorie intake.
+                Monounsaturated Fatty Acids (Semi-stable): Include in moderation.
+                Polyunsaturated Fatty Acids (Unstable):
+                    Linoleic acid (LA) Omega-6 fatty acid: 12-17 g
+                    α-Linolenic acid (ALA) Omega-3 fatty acid: 1.6 g
+                Dietary Cholesterol: Vegetarian diets are naturally cholesterol-free.
+
+    Micronutrients:
+        1. Minerals:
+            - Sources: Leafy green vegetables, nuts, seeds, fortified plant-based milk, tofu (calcium-set), whole grains
+            Calcium: 1000 mg
+            Sulfur: Adequate intake generally obtained through a balanced vegetarian diet.
+            Phosphorus: 700 mg
+            Magnesium: 400 mg
+            Sodium: Limit to less than 2300 mg per day.
+            Potassium: 4700 mg
+            Iron: 18 mg (Vegetarians may require higher amounts due to lower bioavailability of plant-based iron)
+            Zinc: 11 mg 
+            
+            Trace elements:
+            Boron: Adequate intake generally obtained through a balanced vegetarian diet.
+            Copper: 0.9 mg
+            Chlorine: Adequate intake generally obtained through a balanced vegetarian diet.
+            Selenium: 55 mcg
+            Chromium: Adequate intake generally obtained through a balanced vegetarian diet.
+            Manganese: 2.3 mg
+            Molybdenum: 45 mcg
+            Cobalt: Adequate intake generally obtained through a balanced vegetarian diet. (Vitamin B12 supplementation may be necessary for vegetarians)
+            Fluorine: Adequate intake generally obtained through fluoridated water and other dietary sources.
+            Iodine: 150 mcg
+            Silicon: Adequate intake generally obtained through a balanced vegetarian diet.
+            Nickel: Adequate intake generally obtained through a balanced vegetarian diet.
+            Vanadium: Adequate intake generally obtained through a balanced vegetarian diet.
+
+        2. Vitamins:
+            - Sources: Fruits, vegetables, whole grains, fortified plant-based milk, nutritional yeast
+            Vitamin A (retinol): 900 mcg
+            Vitamin B complex:
+                Vitamin B1 (thiamin): 1.2 mg
+                Vitamin B2 (riboflavin): 1.3 mg
+                Vitamin B3 (niacin): 16 mg
+                Vitamin B4 (Choline): Adequate intake generally obtained through a balanced vegetarian diet.
+                Vitamin B5 (pantothenic acid): 5 mg
+                Vitamin B6 (pyridoxine): 1.3 mg
+                Vitamin B7 (biotin): 30 mcg
+                Vitamin B8 (inositol): Adequate intake generally obtained through a balanced vegetarian diet.
+                Vitamin B9 (folate & folic acid): 400 mcg
+                Vitamin B12 (cobalamin): 2.4 mcg (Supplementation is crucial for vegetarians, as B12 is not found in plant-based foods)
+            Vitamin C (ascorbic acid): 90 mg
+            Vitamin D complex:
+                Vitamin D2 (ergocalciferol): 15 mcg (600 IU) (Sun exposure and/or supplementation may be necessary)
+                Vitamin D3 (cholecalciferol): 15 mcg (600 IU) (Sun exposure and/or supplementation may be necessary)
+            Vitamin E (tocopherols and tocotrienols): 15 mg
+            Vitamin K complex:
+                Vitamin K1 (phylloquinone): 120 mcg
+                Vitamin K2 (menaquinone): Adequate intake generally obtained through a balanced vegetarian diet.
+
+Other related info.:
+    Water: Aim for 8-10 glasses (2-2.5 liters) of water per day.
+    Fibre: 30-35 grams of fiber per day from sources like fruits, vegetables, whole grains, and legumes.
+    Antioxidants: Consume a variety of colorful fruits and vegetables rich in antioxidants like berries, spinach, and kale.
+    Electrolytes: Include sources of electrolytes like coconut water, bananas, and leafy greens.
+    Amino Acids (Non-essential): Adequate intake generally obtained through a balanced vegetarian diet.
+    Ethanol: Consumption is a personal choice, but moderation is key.
+    Phytonutrients (Phytochemicals):
+        Flavonoids: Consume a variety of fruits, vegetables, and beverages like tea and cocoa.
+        Polyphenols: Include sources like berries, grapes, green tea, and olive oil.
+        Carotenoids:
+            Alpha carotene: Found in orange and yellow fruits and vegetables like carrots, sweet potatoes, and cantaloupe.
+            Beta carotene: Found in similar sources as alpha-carotene, as well as leafy green vegetables.
+            Cryptoxanthin: Found in oranges, papayas, and red peppers.
+            Lutein: Found in leafy green vegetables like spinach and kale.
+            Lycopene: Found in tomatoes and tomato products.
+            Zeaxanthin: Found in leafy green vegetables, corn, and egg yolks.
+
+Tips/Extra Recommendations/Advises:
+    - Ensure adequate protein intake by including a variety of plant-based protein sources throughout the day.
+    - Consume iron-rich foods with a source of vitamin C to enhance iron absorption.
+    - Consider a vitamin B12 supplement to meet daily requirements.
+    - Get enough calcium and vitamin D through fortified foods or supplements, especially if dairy consumption is limited.
+    - Stay hydrated by drinking plenty of water throughout the day.
+    - Incorporate regular physical activity into your routine to support overall health and well-being.
+    - Consult with a registered dietitian or nutritionist for personalized dietary advice.
+
+    - Sleep Disorders:
+        Magnesium: Consume magnesium-rich foods like almonds, spinach, and dark chocolate. Consider a magnesium supplement after consulting with a healthcare professional.
+        Tryptophan: Include tryptophan-rich foods like tofu, nuts, and seeds in your diet.
+        Vitamin D: Ensure adequate vitamin D levels through sun exposure and/or supplementation, as deficiency has been linked to sleep disturbances.
