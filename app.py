@@ -7,7 +7,7 @@ from flask import Flask, render_template, request, jsonify
 
 
 # Set your Gemini API key
-os.environ["GEMINI_API_KEY"] = "AIzaSyB47bxpxggdBeVoVeIrXc8K_fZFdoz1VUQ"  # Replace with your actual API key
+os.environ["GEMINI_API_KEY"] = "YOUR API"  # Replace with your actual API key
 
 # Create the model
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
