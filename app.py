@@ -8,6 +8,10 @@ from dotenv import load_dotenv
 from docx import Document
 from docx.shared import Inches
 from fpdf import FPDF
+import logging
+
+# Configure logging to display info messages
+logging.basicConfig(level=logging.INFO)
 
 # Load environment variables
 load_dotenv()
@@ -335,8 +339,14 @@ def nutrient_recommendations():
 
     # Save raw text to temporary file (with UTF-8 encoding)
     text_file_path = os.path.join(tempfile.gettempdir(), "nutrient_recommendations.txt")
-    with open(text_file_path, "w", encoding='utf-8') as f:
-        f.write(response)
+    try:
+        with open(text_file_path, "w", encoding='utf-8') as f:
+            f.write(response)
+        logging.info(f"File saved successfully at: {text_file_path}")
+    except Exception as e:
+        logging.error(f"Failed to save file: {e}")
+    
+    print(text_file_path)
         
     formatted_recommendations = format_recommendations(response)
     return jsonify({'recommendations': formatted_recommendations})
@@ -378,8 +388,9 @@ def convert_docx_to_pdf(docx_file_path):
     pdf = PDF(orientation='L', unit='mm', format='A4')  # Set orientation to 'L' for landscape
     pdf.add_page()
 
-    # Choose the font based on your preference
-    font_path = os.path.join('static', 'fonts', 'DejaVuSerif.ttf')
+    # Construct the font path relative to the script location
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    font_path = os.path.join(current_dir, 'static', 'fonts', 'DejaVuSerif.ttf')
 
     # Check if the font file exists
     if os.path.isfile(font_path):
