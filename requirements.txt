@@ -1,7 +1,6 @@
 Flask
 python-dotenv
-docx2pdf
 python-docx
 google-generativeai
-pywin32
 gunicorn
+fpdf

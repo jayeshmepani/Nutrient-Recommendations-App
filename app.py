@@ -1,13 +1,15 @@
 import os
-from google.generativeai.types import HarmCategory, HarmBlockThreshold
-import google.generativeai as genai
 import time
-from flask import Flask, render_template, request, jsonify, send_from_directory, abort
+import tempfile
+import google.generativeai as genai
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
+from flask import Flask, render_template, request, jsonify, abort, send_file
 from dotenv import load_dotenv
-# import pythoncom
-from docx2pdf import convert as docx_to_pdf_convert
 from docx import Document
 from docx.shared import Inches
+from fpdf import FPDF
+from docx import Document
+
 
 # Load environment variables
 load_dotenv()
@@ -25,7 +27,7 @@ generation_config = {
 }
 
 model = genai.GenerativeModel(
-    model_name="gemini-1.5-pro",
+    model_name="gemini-1.5-pro-002",
     generation_config=generation_config,
     safety_settings={
         HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
@@ -36,7 +38,6 @@ model = genai.GenerativeModel(
 )
 
 app = Flask(__name__)
-
 
 def get_nutrient_recommendations(
     age,
@@ -336,9 +337,8 @@ def nutrient_recommendations():
         age, gender, height, weight, activity_level, pregnancy_or_lactation, health_condition, dietary_preferences
     )
 
-    # Save raw text to file (with UTF-8 encoding)
-    text_file_path = os.path.join("static", "txt", "nutrient_recommendations.txt")
-    os.makedirs(os.path.dirname(text_file_path), exist_ok=True)
+    # Save raw text to temporary file (with UTF-8 encoding)
+    text_file_path = os.path.join(tempfile.gettempdir(), "nutrient_recommendations.txt")
     with open(text_file_path, "w", encoding='utf-8') as f:
         f.write(response)
         
@@ -361,46 +361,66 @@ def convert_txt_to_docx(txt_file_path):
             paragraph.paragraph_format.space_before = 0
             paragraph.paragraph_format.space_after = 0
 
-    # Save the DOCX file in the same directory as the TXT file
+    # Save the DOCX file in the temporary directory
     docx_file_path = txt_file_path.replace('.txt', '.docx')
     doc.save(docx_file_path)
     return docx_file_path
 
+class PDF(FPDF):
+    def header(self):
+        # Removed header implementation
+        pass
+
+    def footer(self):
+        # Removed footer implementation
+        pass
+
 def convert_docx_to_pdf(docx_file_path):
-    pdf_file_path = 'static/pdf/nutrient_recommendations.pdf'
-    docx_to_pdf_convert(docx_file_path, pdf_file_path)  # This will overwrite the existing PDF
+    """Convert a DOCX file to PDF using FPDF."""
+    pdf_file_path = docx_file_path.replace(".docx", ".pdf")
+    doc = Document(docx_file_path)
+    pdf = PDF()
+    pdf.add_page()
+
+    # Load the custom font
+    font_path = os.path.join('static', 'fonts', 'TimesNewRoman.ttf')
+
+    # Add the regular font
+    pdf.add_font('TimesNewRoman', '', font_path, uni=True)
+
+    # Set the font
+    pdf.set_font('TimesNewRoman', size=13)  # Use the regular Times New Roman font
+
+    for paragraph in doc.paragraphs:
+        pdf.multi_cell(0, 5, paragraph.text)
+
+    pdf.output(pdf_file_path)
     return pdf_file_path
 
 def convert_nutrient_recommendations():
-    txt_file_path = 'static/txt/nutrient_recommendations.txt'
-    docx_file_path = 'static/txt/nutrient_recommendations.docx'
-    pdf_file_path = 'static/pdf/nutrient_recommendations.pdf'
-
-    # Convert TXT to DOCX
-    convert_txt_to_docx(txt_file_path)
-
-    # Convert DOCX to PDF (overwrites if it already exists)
-    pdf_file = convert_docx_to_pdf(docx_file_path)
+    """Convert the nutrient recommendations text file to DOCX and then to PDF."""
+    # Get the path to the temporary text file
+    text_file_path = os.path.join(tempfile.gettempdir(), "nutrient_recommendations.txt")
+    
+    # Convert the TXT file to DOCX
+    docx_file_path = convert_txt_to_docx(text_file_path)
+    
+    # Convert the DOCX file to PDF
+    pdf_file_path = convert_docx_to_pdf(docx_file_path)
 
     return pdf_file_path
 
 @app.route('/download')
 def download_file():
-    # Define the PDF file path
-    pdf_file_path = 'static/pdf/nutrient_recommendations.pdf'
+    # Always regenerate the DOCX and PDF files to ensure fresh content
+    pdf_file_path = convert_nutrient_recommendations()
 
-    # Check if the PDF file already exists
-    if not os.path.isfile(pdf_file_path):
-        # If the PDF does not exist, generate it
-        convert_nutrient_recommendations()
-
-    # At this point, the PDF file should exist; if it still doesn't, raise a 404
+    # Check if the PDF file exists before attempting to serve it
     if not os.path.isfile(pdf_file_path):
         abort(404)  # Return a 404 error if the file does not exist
 
-    # Send the file from the directory
-    return send_from_directory(directory=os.path.join("static", "pdf"), path="nutrient_recommendations.pdf", as_attachment=True)
-
+    # Send the file from the temporary directory
+    return send_file(pdf_file_path, as_attachment=True, download_name="nutrient_recommendations.pdf")
 
 def format_recommendations(recommendations):
     formatted = ""
