@@ -372,26 +372,22 @@ class PDF(FPDF):
         pass
 
 def convert_docx_to_pdf(docx_file_path):
-    """Convert a DOCX file to PDF using FPDF."""
-    # Create the output PDF file path
+    """Convert a DOCX file to PDF using FPDF in landscape mode."""
     pdf_file_path = docx_file_path.replace(".docx", ".pdf")
-    
-    # Load the DOCX file
     doc = Document(docx_file_path)
-    pdf = PDF()
+    pdf = PDF(orientation='L', unit='mm', format='A4')  # Set orientation to 'L' for landscape
     pdf.add_page()
 
-    # Construct the font path dynamically for compatibility
-    font_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'fonts', 'TimesNewRoman.ttf')
+    # Choose the font based on your preference
+    font_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'fonts', 'DejaVuSerif.ttf')
 
     # Check if the font file exists
     if os.path.isfile(font_path):
-        # Add the regular font if it exists
-        pdf.add_font('TimesNewRoman', '', font_path, uni=True)
-        pdf.set_font('TimesNewRoman', size=13)  # Set font size
+        pdf.add_font('DejaVuSerif', '', font_path, uni=True)  
+        pdf.set_font('DejaVuSerif', size=12)  # Set font size
     else:
         print(f"Font file not found: {font_path}. Using default font.")
-        pdf.set_font('Arial', size=13)  # Fallback to Arial if font is not found
+        pdf.set_font('Arial', size=12)  # Fallback to Arial if font is not found
 
     # Iterate through the paragraphs and add them to the PDF
     for paragraph in doc.paragraphs:
@@ -400,6 +396,7 @@ def convert_docx_to_pdf(docx_file_path):
     # Output the PDF file
     pdf.output(pdf_file_path)
     return pdf_file_path
+
 
 def convert_nutrient_recommendations():
     """Convert the nutrient recommendations text file to DOCX and then to PDF."""
