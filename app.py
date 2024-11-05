@@ -20,9 +20,7 @@ genai.api_key = os.getenv("GEMINI_API_KEY")
 # Create the model
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 generation_config = {
-    "temperature": 0.3,
-    "top_p": 0.95,
-    "top_k": 64,
+    "temperature": 0.5,
     "response_mime_type": "text/plain",
 }
 
