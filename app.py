@@ -8,8 +8,6 @@ from dotenv import load_dotenv
 from docx import Document
 from docx.shared import Inches
 from fpdf import FPDF
-from docx import Document
-
 
 # Load environment variables
 load_dotenv()
@@ -375,23 +373,31 @@ class PDF(FPDF):
 
 def convert_docx_to_pdf(docx_file_path):
     """Convert a DOCX file to PDF using FPDF."""
+    # Create the output PDF file path
     pdf_file_path = docx_file_path.replace(".docx", ".pdf")
+    
+    # Load the DOCX file
     doc = Document(docx_file_path)
     pdf = PDF()
     pdf.add_page()
 
-    # Load the custom font
-    font_path = os.path.join('static', 'fonts', 'TimesNewRoman.ttf')
+    # Construct the font path dynamically for compatibility
+    font_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'fonts', 'TimesNewRoman.ttf')
 
-    # Add the regular font
-    pdf.add_font('TimesNewRoman', '', font_path, uni=True)
+    # Check if the font file exists
+    if os.path.isfile(font_path):
+        # Add the regular font if it exists
+        pdf.add_font('TimesNewRoman', '', font_path, uni=True)
+        pdf.set_font('TimesNewRoman', size=13)  # Set font size
+    else:
+        print(f"Font file not found: {font_path}. Using default font.")
+        pdf.set_font('Arial', size=13)  # Fallback to Arial if font is not found
 
-    # Set the font
-    pdf.set_font('TimesNewRoman', size=13)  # Use the regular Times New Roman font
-
+    # Iterate through the paragraphs and add them to the PDF
     for paragraph in doc.paragraphs:
-        pdf.multi_cell(0, 5, paragraph.text)
+        pdf.multi_cell(0, 5, paragraph.text)  # Line height set to 5
 
+    # Output the PDF file
     pdf.output(pdf_file_path)
     return pdf_file_path
 
