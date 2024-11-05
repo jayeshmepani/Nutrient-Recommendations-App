@@ -379,7 +379,7 @@ def convert_docx_to_pdf(docx_file_path):
     pdf.add_page()
 
     # Choose the font based on your preference
-    font_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'fonts', 'DejaVuSerif.ttf')
+    font_path = os.path.join('static', 'fonts', 'DejaVuSerif.ttf')
 
     # Check if the font file exists
     if os.path.isfile(font_path):
