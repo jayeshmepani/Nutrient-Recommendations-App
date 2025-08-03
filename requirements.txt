@@ -1,6 +1,7 @@
 Flask
 python-dotenv
 python-docx
-google-generativeai
+google-genai
 gunicorn
-fpdf
+fpdf2
+pyphen

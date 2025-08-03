@@ -1,92 +1,232 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nutrient Recommendations</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<html lang="en" data-theme="light">
 
-    <style>
-      #pregnancy_or_lactation_container {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Nutrient Recommendations Form</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriAI - Your Personal AI Nutritionist</title>
 
-      <form id="nutrient-form" method="POST">
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required />
+    <meta name="description"
+        content="Get personalized AI-powered nutrient recommendations based on your age, gender, health conditions, and dietary preferences.">
+    <meta name="keywords"
+        content="nutrition, health, AI recommendations, vitamins, minerals, diet, nutritionist, dietitian">
 
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender" class="browser-default">
-          <option value="" disabled selected>Choose your option</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-        <label for="height">Height (cm):</label>
-        <input type="number" id="height" name="height" required />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
 
-        <label for="weight">Weight (kg):</label>
-        <input type="number" id="weight" name="weight" required />
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-seedling"></i>
+                <span>NutriAI</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active" data-section="home"><i class="fas fa-home"></i> Home</a>
+                <a href="#results" class="nav-link" data-section="results"><i class="fas fa-chart-bar"></i> Results</a>
+                <a href="#compare" class="nav-link" data-section="compare"><i class="fas fa-balance-scale"></i>
+                    Compare</a>
+            </div>
+            <div class="theme-toggle">
+                <i class="fas fa-moon" id="themeToggle"></i>
+            </div>
+        </div>
+    </header>
 
-        <div id="pregnancy_or_lactation_container">
-          <label for="pregnancy_or_lactation">Pregnancy or Lactation:</label>
-          <select id="pregnancy_or_lactation" name="pregnancy_or_lactation">
-            <option value="">None</option>
-            <option value="Pregnant">Pregnant</option>
-            <option value="Lactating">Lactating</option>
-          </select>
-        </div><br /><br />
+    <main class="main-container">
+        <section id="home" class="section active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1>Your Personal AI Nutritionist</h1>
+                    <p>Unlock optimal health with data-driven nutrition plans, tailored just for you.</p>
+                </div>
 
-        <label for="health_condition">Health Condition:</label>
-        <input type="text" placeholder="disabilities, disorders, diseases, allergies, injuries, infections, deficiencies, or any other" id="health_condition" name="health_condition" />
+                <div class="form-wrapper">
+                    <form id="nutrient-form">
+                        <div class="progress-container">
+                            <div class="progress-bar" id="progressBar"></div>
+                        </div>
 
-        <label for="dietary_preferences">Dietary Preferences:</label>
-        <select id="dietary_preferences" name="dietary_preferences">
-          <option value="Vegetarian">Vegetarian</option>
-          <option value="Vegan">Vegan</option>
-          <option value="Non-Vegetarian">Non-Vegetarian</option>
-        </select><br /><br />
+                        <div class="form-steps">
+                            <div class="form-step active" data-step="1">
+                                <h3 class="step-title"><i class="fas fa-user"></i> Basic Information</h3>
+                                <div class="input-group">
+                                    <label for="age">Age</label>
+                                    <input type="number" id="age" placeholder="e.g., 30" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>Gender</label>
+                                    <div class="custom-dropdown" data-target-input="gender">
+                                        <button type="button" class="dropdown-trigger"><span>Select
+                                                Gender</span></button>
+                                        <div class="dropdown-menu">
+                                            <ul>
+                                                <li data-value="Male"><i class="fas fa-mars"></i> Male</li>
+                                                <li data-value="Female"><i class="fas fa-venus"></i> Female</li>
+                                                <li data-value="Other"><i class="fas fa-genderless"></i> Other</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="gender" required>
+                                </div>
+                            </div>
 
-        <label for="activity_level">Activity Level:</label>
-        <select id="activity_level" name="activity_level" placeholder="Activity level is not required for children under the age of the three years.">
-          <option value="sedentary">Sedentary</option>
-          <option value="lightly active">Lightly Active</option>
-          <option value="moderately active">Moderately Active</option>
-          <option value="very active">Very Active</option>
-          <option value="extra active">Extra Active</option>
-        </select><br /><br />
+                            <div class="form-step" data-step="2">
+                                <h3 class="step-title"><i class="fas fa-ruler-combined"></i> Physical Profile</h3>
+                                <div class="form-row">
+                                    <div class="input-group"><label for="height">Height (cm)</label><input type="number"
+                                            id="height" placeholder="e.g., 175" required></div>
+                                    <div class="input-group"><label for="weight">Weight (kg)</label><input type="number"
+                                            id="weight" placeholder="e.g., 70" required></div>
+                                </div>
+                                <div class="input-group" id="pregnancyContainer" style="display: none;">
+                                    <label>Pregnancy or Lactation</label>
+                                    <div class="custom-dropdown" data-target-input="pregnancy_or_lactation">
+                                        <button type="button" class="dropdown-trigger"><span>Select
+                                                Status</span></button>
+                                        <div class="dropdown-menu">
+                                            <ul>
+                                                <li data-value="None" class="selected"><i
+                                                        class="fas fa-times-circle"></i> None</li>
+                                                <li data-value="Pregnant"><i class="fas fa-baby"></i> Pregnant</li>
+                                                <li data-value="Lactating"><i class="fas fa-child"></i> Lactating</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="pregnancy_or_lactation" value="None">
+                                </div>
+                            </div>
 
-        <button type="submit" class="btn waves-effect waves-light">Get Recommendations</button>
-      </form>
-      <div id="recommendations"></div>
+                            <div class="form-step" data-step="3">
+                                <h3 class="step-title"><i class="fas fa-heartbeat"></i> Lifestyle</h3>
+                                <div class="input-group">
+                                    <label>Activity Level</label>
+                                    <div class="selection-grid" id="activity_level-grid">
+                                        <div class="selection-card" data-value="Sedentary">
+                                            <i class="fas fa-couch"></i>
+                                            <span>Sedentary</span>
+                                        </div>
+                                        <div class="selection-card" data-value="Lightly Active">
+                                            <i class="fas fa-walking"></i>
+                                            <span>Lightly Active</span>
+                                        </div>
+                                        <div class="selection-card" data-value="Moderately Active">
+                                            <i class="fas fa-running"></i>
+                                            <span>Moderately Active</span>
+                                        </div>
+                                        <div class="selection-card" data-value="Very Active">
+                                            <i class="fas fa-dumbbell"></i>
+                                            <span>Very Active</span>
+                                        </div>
+                                        <div class="selection-card" data-value="Extremely Active">
+                                            <i class="fas fa-fire"></i>
+                                            <span>Extremely Active</span>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="activity_level" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>Dietary Preferences</label>
+                                    <div class="selection-grid" id="dietary_preferences-grid">
+                                        <div class="selection-card" data-value="Non-Vegetarian"><i
+                                                class="fas fa-drumstick-bite"></i><span>Non-Vegetarian</span></div>
+                                        <div class="selection-card" data-value="Vegetarian"><i
+                                                class="fas fa-leaf"></i><span>Vegetarian</span></div>
+                                        <div class="selection-card" data-value="Vegan"><i
+                                                class="fas fa-seedling"></i><span>Vegan</span></div>
+                                    </div>
+                                    <input type="hidden" id="dietary_preferences" required>
+                                </div>
+                            </div>
+
+                            <div class="form-step" data-step="4">
+                                <h3 class="step-title"><i class="fas fa-notes-medical"></i> Health Details (Optional)
+                                </h3>
+                                <div class="input-group">
+                                    <label for="health_condition">Health Conditions, Allergies, or Goals</label>
+                                    <textarea id="health_condition"
+                                        placeholder="e.g., Diabetes, Gluten Allergy, Goal: Build Muscle..."></textarea>
+                                </div>
+                                <div class="health-tags">
+                                    <label>Click to add common tags:</label>
+                                    <div id="healthTagsContainer">
+                                        <span class="tag">Diabetes</span><span class="tag">Hypertension</span>
+                                        <span class="tag">Anemia</span><span class="tag">Gluten Free</span>
+                                        <span class="tag">Dairy Free</span><span class="tag">Weight Loss</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" id="prevBtn" class="btn btn-secondary" style="display: none;"><i
+                                    class="fas fa-arrow-left"></i> Previous</button>
+                            <button type="button" id="nextBtn" class="btn btn-primary">Next <i
+                                    class="fas fa-arrow-right"></i></button>
+                            <button type="submit" id="submitBtn" class="btn btn-success" style="display: none;">
+                                <i class="fas fa-magic"></i> Get Recommendations
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="results" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Your Personalized Report</h2>
+                <div class="section-actions">
+                    <a href="#" class="btn btn-primary" id="downloadBtn" style="display: none;">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                </div>
+            </div>
+            <div id="results-content">
+                <div class="no-data">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Your report will appear here</h3>
+                    <p>Complete the form to generate your personalized nutrition plan.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="compare" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-balance-scale"></i> Food Comparison</h2>
+            </div>
+            <div class="compare-container">
+                <form id="compareForm" class="compare-form">
+                    <div class="form-row">
+                        <div class="input-group"><label for="food1">Food 1</label><input type="text" id="food1"
+                                placeholder="e.g., Apple" required></div>
+                        <div class="input-group"><label for="food2">Food 2</label><input type="text" id="food2"
+                                placeholder="e.g., Banana" required></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-balance-scale"></i> Compare
+                        Foods</button>
+                </form>
+                <div id="comparison-results">
+                    <div class="no-data">
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Comparison results will appear here</h3>
+                        <p>Enter two foods to see a side-by-side nutritional comparison.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="toast" class="toast">
+        <div class="toast-content"><i class="toast-icon"></i><span class="toast-message"></span></div>
     </div>
 
-    <!-- Materialize-styled button with effects -->
-    <div class="download_btn">
-      <a href="{{ url_for('download_file') }}" class="btn-large waves-effect waves-light blue"><i class="material-icons left">file_download</i>Download Recommendations</a>
-    </div>
-    
-    <script>
-      document.getElementById('gender').addEventListener('change', function () {
-        const gender = this.value
-        const pregnancyOrLactationContainer = document.getElementById('pregnancy_or_lactation_container')
-      
-        if (gender === 'Female') {
-          pregnancyOrLactationContainer.style.display = 'block'
-        } else {
-          pregnancyOrLactationContainer.style.display = 'none'
-        }
-      })
-    </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  </body>
+</body>
+
 </html>
