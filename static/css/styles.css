@@ -379,7 +379,7 @@ textarea {
 
 .dropdown-trigger {
     width: 100%;
-    padding: 1rem 3rem;
+    padding: 1rem 1.5rem;
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius);
     font-size: 1rem;
@@ -588,6 +588,11 @@ textarea {
     .card-chevron {
         transition: transform 0.3s ease;
         color: var(--primary-color);
+    }
+
+    span {
+        display: flex;
+        gap: 1ch;
     }
 }
 
