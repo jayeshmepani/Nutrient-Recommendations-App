@@ -213,7 +213,7 @@ def nutrient_recommendations():
 
         response_text = ""
         for chunk in client.models.generate_content_stream(
-            model="gemini-1.5-flash-latest",
+            model="gemini-2.0-flash-lite",
             contents=contents,
             config=config,
         ):
@@ -255,13 +255,13 @@ def compare_foods():
 
         config = types.GenerateContentConfig(
             system_instruction=SYSTEM_INSTRUCTION_FOOD_COMPARISON,
-            temperature=0.2,
+            temperature=0.3,
             response_mime_type="text/plain",
         )
 
         raw_html_table = ""
         for chunk in client.models.generate_content_stream(
-            model="gemini-1.5-flash-latest",
+            model="gemini-2.0-flash-lite",
             contents=contents,
             config=config,
         ):
