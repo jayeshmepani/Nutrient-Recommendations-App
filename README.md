@@ -7,8 +7,8 @@ A Flask application that uses Google's Gemini API to generate structured nutriti
 - Nutrition report generation from age, gender, height, weight, activity level, pregnancy/lactation context, health conditions, and dietary preferences.
 - Structured output covering calories, macronutrients, amino acids, fatty acids, vitamins, minerals, food sources, and actionable dietary considerations.
 - Side-by-side comparison of exactly two foods.
-- In-browser formatted results and downloadable text reports.
-- DOCX/PDF-related dependencies are included for document/report functionality in the application.
+- In-browser formatted results and downloadable PDF reports (the download route converts the generated text report to DOCX and then PDF).
+- Download reports are produced through the application's text-to-DOCX and DOCX-to-PDF conversion path.
 
 ## Requirements
 
@@ -53,7 +53,7 @@ Open `http://127.0.0.1:5000`.
 | `/` | Nutrition report interface |
 | `POST /get_nutrient_recommendations` | Generate a structured nutrition report |
 | `POST /compare_foods` | Compare exactly two foods |
-| `GET /download/<token>` | Download a generated text report |
+| `GET /download/<token>` | Generate and download a PDF report from a stored report token |
 
 ## Health and safety notice
 
